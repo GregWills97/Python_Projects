@@ -66,7 +66,42 @@ class Grid:
         #hold for confirm
         return
 
+#Starting GUI functions
+root = Tk()
+
 def startScreen():
-    root = Tk()
-    start = Label(root,  text="Sudoku").grid(row = 0, column = 0)
+    global root
+    root.configure(background="white")
+    frame = Frame(root, bg="white")
+    frame.pack()
+
+    #Title
+    for i in range(22):
+        spacer = Label(frame, text=" ", bg="white").pack(side=TOP)
+    start  = Label(frame, text="Sudoku", bg="white")
+    start.config(font=("Courier", 32))
+    start.pack(side=TOP)
+
+    #Start Buttons
+    spacer = Label(frame, text=" ", bg="white").pack(side=TOP)
+    startButton = Button(frame, text = "Start Game", command = startGame).pack(side=RIGHT)
+    quitButton = Button(frame, text = "Quit", command = root.quit).pack(side=LEFT)
+
     root.mainloop()
+
+
+def startGame():
+    global root
+    widget_list = all_widgets(root)
+    for item in widget_list:
+        item.destroy()
+    
+def all_widgets(window) :
+    list = window.winfo_children()
+
+    for item in list :
+        if item.winfo_children :
+            list.extend(item.winfo_children())
+
+    return list
+
