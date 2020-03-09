@@ -1,4 +1,5 @@
 import numpy as np #use numpy for better matrix printing
+from tkinter import *
 
 class Grid:
 
@@ -33,7 +34,7 @@ class Grid:
         #             [0, 4, 0, 0, 5, 0, 0, 3, 6],
         #             [7, 0, 3, 0, 1, 8, 0, 0, 0]]
     
-    def Valid(self, y, x, n) :
+    def valid(self, y, x, n) :#checks if move is valid
         for i in range(0,9) :         
             if self.grid[y][i] == n :    #Look at the entire row to check valid input
                 return False
@@ -50,17 +51,22 @@ class Grid:
                     return False
         return True     #if valid placement return true
     
-    def Solve(self) :   #function that solves puzzle using backtracking
+    def solve(self) :   #function that solves puzzle using backtracking
         for y in range(9) :
             for x in range(9) :
                 if self.grid[y][x] == 0 :
                     for n in range(1,10) :
                         if self.Valid(y, x, n) :
                             self.grid[y][x] = n
-                            self.Solve()
+                            self.solve()
                             self.grid[y][x] = 0  #if solve returns set to zero and "backtrack" to find different solution
                             #updateScreen()
                     return
         print(np.matrix(self.grid))
         #hold for confirm
-        return self
+        return
+
+def startScreen():
+    root = Tk()
+    start = Label(root,  text="Sudoku").grid(row = 0, column = 0)
+    root.mainloop()
