@@ -69,7 +69,7 @@ class Grid:
 #Starting GUI functions
 root = Tk()
 
-def startScreen():
+def startScreen(): #Function to print start screen
     global root
     root.configure(background="white")
     frame = Frame(root, bg="white")
@@ -90,13 +90,13 @@ def startScreen():
     root.mainloop()
 
 
-def startGame():
+def startGame(): #Function called when start game is pressed
     global root
     widget_list = all_widgets(root)
-    for item in widget_list:
+    for item in widget_list:            #clears the screen
         item.destroy()
     
-def all_widgets(window) :
+def all_widgets(window) : # Function to find all widgets on a window (for clearing screen)
     list = window.winfo_children()
 
     for item in list :
