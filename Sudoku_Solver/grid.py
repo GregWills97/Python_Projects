@@ -66,6 +66,7 @@ class Grid:
         #hold for confirm
         return
 
+
 #Starting GUI functions
 root = Tk()
 
@@ -95,6 +96,14 @@ def startGame(): #Function called when start game is pressed
     widget_list = all_widgets(root)
     for item in widget_list:            #clears the screen
         item.destroy()
+    root.title("Sudoku")
+    font = ('Courier', 18)
+    color = 'white'
+
+    restart_button = Button(text="Start Over", command=startGame)
+    restart_button.pack(side=RIGHT)
+    solve_button = Button(text="Give Up", command=printSolved)
+    solve_button.pack(side=LEFT)
     
 def all_widgets(window) : # Function to find all widgets on a window (for clearing screen)
     list = window.winfo_children()
@@ -105,3 +114,5 @@ def all_widgets(window) : # Function to find all widgets on a window (for cleari
 
     return list
 
+def printSolved() :
+    pass
